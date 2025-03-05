@@ -12,7 +12,11 @@ int main( int argc , char **argv ) {
     
     char file_path[64] ;
     memset( file_path , 0 , sizeof( file_path ) ) ;
-    snprintf( file_path , 64 , "F-D0047-0%c%c.json", argv[1][strlen( argv[1] )-2] , argv[1][strlen( argv[1] )-1] ) ;
+    if ( strncmp( argv[1] , "defalute" , 8 ) != 0 ) {
+        snprintf( file_path , 64 , "F-D0047-0%c%c.json", argv[1][strlen( argv[1] )-2] , argv[1][strlen( argv[1] )-1] ) ;
+    } else {
+        sprintf( file_path , "defalute.json" ) ;
+    }
     FILE *fp = fopen( file_path , "wb" ) ;
     if ( !fp ) {
         fprintf( stderr , "fopen() failed.\n" ) ;
