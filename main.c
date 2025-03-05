@@ -84,6 +84,10 @@ int main( int argc , char **argv ) {
         requested_file[strlen(requested_file)] = 0 ;
     }
 
+    if ( strlen( authenticate ) != 40 || strncmp( authenticate , "[Please enter your authenticate]" , 32 ) == 0 ) {
+        fprintf( stderr , "Please enter your authenticate.\n" ) ;
+        exit(11) ;
+    }
     snprintf( requested_char , KB ,
         "%s/%s?Authorization=%s&limit=%lu&format=JSON&sort=time", request_resource , requested_file , authenticate , max_data_amount ) ;
     
